@@ -1,8 +1,11 @@
 import React from 'react'
 import { Card,CardMedia,CardContent,Typography,CardActions,Button } from '@mui/material'
 import perfumeImg from '../../assets/perfume-2.jpg'
+import { useDispatch } from 'react-redux'
+import { addCartItem } from '../../redux/slices/cartSlice'
 
 const ItemCard = ({data}) => {
+    const dispatch = useDispatch();
   return (
     <Card sx={{ maxWidth: 300 }}>
     <CardMedia
@@ -23,7 +26,7 @@ const ItemCard = ({data}) => {
       </Typography>
     </CardContent>
     <CardActions>
-      <Button size="medium" fullWidth variant='contained'>Add to Cart</Button>
+      <Button size="medium" onClick={()=>dispatch(addCartItem(data))} fullWidth variant='contained'>Add to Cart</Button>
     </CardActions>
   </Card>
   )

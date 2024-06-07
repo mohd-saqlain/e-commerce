@@ -32,7 +32,7 @@ const Home = () => {
   return (
     <div>
       <Topbar/>
-      <Box p={4}>
+      <Box px={4} pt={12} pb={4}>
         {loading ? <Box sx={{display:'flex',justifyContent:'center',alignItems:'center',height:'80vh'}}> <CircularProgress /></Box>:
       <Grid container rowSpacing={6}>
         {data.map((item,index)=>(
