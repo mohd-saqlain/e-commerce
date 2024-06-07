@@ -1,5 +1,5 @@
 import React from 'react'
-import { Drawer } from '@mui/material'
+import { Drawer,Typography } from '@mui/material'
 
 const Cart = ({open,onClose}) => {
 
@@ -10,7 +10,7 @@ const Cart = ({open,onClose}) => {
     open={open}
     onClose={onClose}
   >
-    Saqlain
+    <Typography>Under Construction</Typography>
   </Drawer>
   )
 }

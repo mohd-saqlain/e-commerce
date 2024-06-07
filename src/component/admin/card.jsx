@@ -2,9 +2,9 @@ import React from 'react'
 import { Card,CardMedia,CardContent,Typography,CardActions,Button } from '@mui/material'
 import perfumeImg from '../../assets/perfume-2.jpg'
 
-const ItemCard = () => {
+const ItemCard = ({data}) => {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 300 }}>
     <CardMedia
       component="img"
       alt="green iguana"
@@ -12,16 +12,18 @@ const ItemCard = () => {
       image={perfumeImg}
     />
     <CardContent>
-      <Typography gutterBottom variant="h5" component="div">
-        Lizard
+      <Typography textAlign='center' gutterBottom variant="h5" component="div">
+        {data?.name || ""}
       </Typography>
-      <Typography variant="body2" color="text.secondary">
-        Lizards are a widespread group of squamate reptiles, with over 6,000
-        species, ranging across all continents except Antarctica
+      <Typography textAlign='center' gutterBottom variant="h6" component="div">
+      ₹{data?.price || ""}
+      </Typography>
+      <Typography textAlign='center' variant="body2" color="text.secondary">
+      {data?.description || ""}
       </Typography>
     </CardContent>
     <CardActions>
-      <Button size="small" fullWidth variant='contained'>Add to Cart</Button>
+      <Button size="medium" fullWidth variant='contained'>Add to Cart</Button>
     </CardActions>
   </Card>
   )
