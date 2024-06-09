@@ -1,22 +1,32 @@
 import React,{useState,useMemo} from 'react'
 import { Box,Card,CardHeader,CardContent,InputLabel,TextField,Button,IconButton, CircularProgress,Snackbar,Alert } from '@mui/material'
 import axios from "axios";
-import * as yup from "yup";
+import { useNavigate } from 'react-router-dom';
+import { apiEndpoint } from '../../utils/url';
 
 const AdminLogin = () => {
+    const navigate = useNavigate();
     const [successMessage,setSuccessMessage] = useState(false);
     const [errorMessage,setErrorMessage] = useState(false);
     const [formData,setFormData] = useState({userId:"",password:""})
 
-const handleSubmit = (e) => {
+const handleSubmit = async (e) => {
     e.preventDefault();
-    if(formData.userId === "admin" && formData.password === "123456"){
-        sessionStorage.setItem("@adminLogin",true);
-        setSuccessMessage("Login successfully")
-        window.location.reload();
-    }else{
-        setErrorMessage("Wrong credentials")
-    }
+    try{
+      const response = await axios.post(`${apiEndpoint}/admin-login`,formData)
+              if(response.data?.status){
+                sessionStorage.setItem("@authToken",response.data?.authToken);
+                setSuccessMessage("Login Successfully")
+                navigate('/admin/orders',{replace:true});
+              }else{
+                setErrorMessage(response.data?.message);
+              }
+
+        }
+        catch(err){
+          console.log(err)
+          setErrorMessage("Wrong Credentials");
+        }
 }
 
   return (
@@ -67,6 +77,7 @@ const handleSubmit = (e) => {
                   fullWidth
                   size="small"
                   name="userId"
+                  required
                   value={formData.userId}
                   onChange={(e)=>setFormData({...formData,userId:e.target.value})}
                 />
@@ -80,6 +91,7 @@ const handleSubmit = (e) => {
                   type='password'
                   size="small"
                   name="password"
+                  required
                   value={formData.password}
                   onChange={(e)=>setFormData({...formData,password:e.target.value})}
                 />

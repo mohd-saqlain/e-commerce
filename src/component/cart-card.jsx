@@ -1,11 +1,11 @@
 import React from 'react'
 import { Card,Box,CardContent,Typography,IconButton,CardMedia, } from '@mui/material'
-import perfumeImg from '../../assets/perfume-2.jpg'
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 import { useDispatch } from 'react-redux';
-import { removeCartItem } from '../../redux/slices/cartSlice';
+import { decreaseQuantity, increaseQuanity, removeCartItem } from '../redux/slices/cartSlice';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import RemoveOutlinedIcon from '@mui/icons-material/RemoveOutlined';
+import perfumeImg from '../assets/perfume-2.jpg'
 
 const CartCard = ({data}) => {
     const dispatch = useDispatch()
@@ -35,13 +35,13 @@ const CartCard = ({data}) => {
         </Typography>
       </CardContent>
       <Box sx={{ display: 'flex', alignItems: 'center',justifyContent:'space-evenly', pl: 1, pb: 1 }}>
-        <IconButton>
+        <IconButton onClick={()=>dispatch(decreaseQuantity(data?._id))}>
             <RemoveOutlinedIcon/>
         </IconButton>
         <Typography variant='body1'>
         {data?.quantity || 0}
         </Typography>
-        <IconButton>
+        <IconButton onClick={()=>dispatch(increaseQuanity(data?._id))}>
        <AddOutlinedIcon/>
         </IconButton>
       </Box>

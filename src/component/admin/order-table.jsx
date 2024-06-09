@@ -15,7 +15,11 @@ const OrderTable = () => {
     React.useEffect(() => {
         const getOrderData = async () => {
           try {
-            const response = await axios.get(`${apiEndpoint}/orders`);
+            const response = await axios.get(`${apiEndpoint}/orders`,{
+              headers:{
+                Authorization:`Bearer ${sessionStorage.getItem("@authToken")}`
+              }
+            });
             if(response.data?.status){
                 setOrderData(response.data?.data)
             }
@@ -41,7 +45,7 @@ const OrderTable = () => {
                 {heading:"Delievery Address",align:"left"},
                 {heading:"Amount",align:"right"},
             ].map(({heading,align})=>(
-            <TableCell align={align}>{heading}</TableCell>
+            <TableCell key={heading} align={align}>{heading}</TableCell>
             ))}
           </TableRow>
         </TableHead>

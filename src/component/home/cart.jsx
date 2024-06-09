@@ -3,8 +3,8 @@ import { Drawer,Box,Typography,IconButton,Button, Snackbar, Alert} from '@mui/ma
 import CartCard from '../cart-card'
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 import { useSelector } from 'react-redux';
-import SignUpModal from '../../forms/signup';
-import PlaceOrderModal from '../../forms/place-order';
+import SignUpModal from '../forms/signup';
+import PlaceOrderModal from '../forms/place-order';
 
 const Cart = ({open,onClose}) => {
     const [signUpOpen,setSignUpOpen] = useState(false);

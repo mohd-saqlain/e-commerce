@@ -1,8 +1,8 @@
 import React from 'react'
 import { Card,CardMedia,CardContent,Typography,CardActions,Button } from '@mui/material'
-import perfumeImg from '../../assets/perfume-2.jpg'
 import { useDispatch } from 'react-redux'
-import { addCartItem } from '../../redux/slices/cartSlice'
+import { addCartItem } from '../redux/slices/cartSlice'
+import perfumeImg from '../assets/perfume-2.jpg'
 
 const ItemCard = ({data}) => {
     const dispatch = useDispatch();

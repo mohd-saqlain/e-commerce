@@ -22,9 +22,21 @@ const cartSlice = createSlice({
         },
         removeAllItem(state,action){
             return [];
+        },
+        increaseQuanity(state,action){
+            const isPresent = state.find((item)=>item._id === action.payload);
+            isPresent.quantity += 1;
+        },
+        decreaseQuantity(state,action){
+            const isPresent = state.find((item)=>item._id === action.payload);
+            if(isPresent.quantity != 1){
+                isPresent.quantity -= 1;
+            }else{
+                return state.filter((item)=>item?._id !== action.payload)
+            }
         }
     }
 })
 
-export const {addCartItem,removeCartItem,removeAllItem} = cartSlice.actions;
+export const {addCartItem,removeCartItem,removeAllItem,increaseQuanity,decreaseQuantity} = cartSlice.actions;
 export default cartSlice 
